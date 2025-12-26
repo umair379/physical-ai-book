@@ -1,0 +1,424 @@
+/**
+ * Purple+Black Theme for Physical AI & Humanoid Robotics Book
+ * CSS custom properties for global color palette
+ */
+
+/* ============================================
+   PURPLE+BLACK COLOR PALETTE (Light Mode)
+   ============================================ */
+:root {
+  /* === PRIMARY BRAND COLORS (Purple) === */
+  --ifm-color-primary: #7C3AED;           /* Base purple (500) */
+  --ifm-color-primary-dark: #6D28D9;      /* Darker purple (600) for hover */
+  --ifm-color-primary-darker: #5B21B6;    /* Even darker (700) for emphasis */
+  --ifm-color-primary-darkest: #3F0F7D;   /* Darkest (800) for borders */
+  --ifm-color-primary-light: #A78BFA;     /* Light purple (400) for backgrounds */
+  --ifm-color-primary-lighter: #C4B5FD;   /* Lighter purple (300) for hover states */
+  --ifm-color-primary-lightest: #E9D5FF;  /* Lightest purple (200) for disabled */
+
+  /* === TYPOGRAPHY === */
+  --ifm-font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --ifm-font-family-monospace: 'Menlo', 'Monaco', 'Courier New', monospace;
+  --ifm-font-size-base: 16px;
+  --ifm-line-height-base: 1.5;
+  --ifm-code-font-size: 95%;
+
+  /* === TYPOGRAPHY SCALE === */
+  /* Font Sizes */
+  --font-size-h1: 2.5rem;      /* 40px */
+  --font-size-h2: 2rem;        /* 32px */
+  --font-size-h3: 1.5rem;      /* 24px */
+  --font-size-h4: 1.25rem;     /* 20px */
+  --font-size-h5: 1.125rem;    /* 18px */
+  --font-size-h6: 1rem;        /* 16px */
+  --font-size-body: 1rem;      /* 16px */
+  --font-size-small: 0.875rem; /* 14px */
+  --font-size-code: 0.875rem;  /* 14px */
+
+  /* Font Weights */
+  --font-weight-heading: 700;     /* Bold for H1 */
+  --font-weight-subheading: 600;  /* Semi-bold for H2-H6 */
+  --font-weight-body: 400;        /* Normal */
+
+  /* Line Heights */
+  --line-height-heading: 1.2;
+  --line-height-subheading-h2: 1.25;
+  --line-height-subheading-h3: 1.3;
+  --line-height-subheading: 1.4;
+  --line-height-body: 1.6;
+  --line-height-code: 1.6;
+
+  /* === SPACING SCALE (4px base unit) === */
+  --spacing-xs: 0.25rem;   /* 4px */
+  --spacing-sm: 0.5rem;    /* 8px */
+  --spacing-md: 0.75rem;   /* 12px */
+  --spacing-base: 1rem;    /* 16px */
+  --spacing-lg: 1.5rem;    /* 24px */
+  --spacing-xl: 2rem;      /* 32px */
+  --spacing-2xl: 3rem;     /* 48px */
+  --spacing-3xl: 4rem;     /* 64px */
+
+  /* Legacy spacing (kept for Docusaurus compatibility) */
+  --ifm-spacing-horizontal: var(--spacing-base);
+  --ifm-spacing-vertical: var(--spacing-base);
+  --ifm-global-spacing: var(--spacing-base);
+
+  /* === SEMANTIC COLORS === */
+  --color-info: #3B82F6;       /* Blue (4.7:1 contrast on black) */
+  --color-success: #10B981;    /* Green (6.1:1 contrast on black) */
+  --color-warning: #F59E0B;    /* Orange (7.8:1 contrast on black) */
+  --color-danger: #F87171;     /* Red (5.2:1 contrast on black) */
+
+  /* === LIGHT MODE BACKGROUNDS === */
+  --ifm-background-color: #FFFFFF;
+  --ifm-background-surface-color: #F3F4F6;
+
+  /* === CODE BLOCKS === */
+  --docusaurus-highlighted-code-line-bg: rgba(124, 58, 237, 0.1);
+}
+
+/* ============================================
+   DARK MODE (Purple+Black)
+   ============================================ */
+[data-theme='dark'] {
+  /* === PRIMARY BRAND COLORS (Purple) === */
+  --ifm-color-primary: #A78BFA;           /* Light purple for dark mode */
+  --ifm-color-primary-dark: #7C3AED;      /* Base purple for hover */
+  --ifm-color-primary-darker: #6D28D9;    /* Darker purple for emphasis */
+  --ifm-color-primary-darkest: #5B21B6;   /* Darkest purple for borders */
+  --ifm-color-primary-light: #C4B5FD;     /* Lighter purple for backgrounds */
+  --ifm-color-primary-lighter: #E9D5FF;   /* Lightest purple for hover states */
+  --ifm-color-primary-lightest: #F3E8FF;  /* Very light purple for disabled */
+
+  /* === DARK MODE BACKGROUNDS (Black/Dark Gray) === */
+  --ifm-background-color: #0A0A0A;        /* Main page background (black) */
+  --ifm-background-surface-color: #1A1A1A; /* Card/component surface */
+  --ifm-color-emphasis-100: #2D2D2D;      /* Border color */
+  --ifm-color-emphasis-200: #3D3D3D;
+  --ifm-color-emphasis-300: #4D4D4D;
+  --ifm-color-emphasis-400: #5D5D5D;
+  --ifm-color-emphasis-500: #6D6D6D;
+  --ifm-color-emphasis-600: #7D7D7D;
+  --ifm-color-emphasis-700: #8D8D8D;
+  --ifm-color-emphasis-800: #9D9D9D;
+  --ifm-color-emphasis-900: #ADADAD;
+  --ifm-color-emphasis-1000: #BDBDBD;
+
+  /* === TEXT COLORS === */
+  --ifm-font-color-base: #FFFFFF;         /* Primary text (white) */
+  --ifm-color-content: #FFFFFF;           /* Content text */
+  --ifm-font-color-secondary: #D1D5DB;    /* Secondary text (light gray) */
+  --ifm-color-content-secondary: #D1D5DB;
+
+  /* === NAVBAR === */
+  --ifm-navbar-background-color: #0A0A0A;     /* Navbar background */
+  --ifm-navbar-link-color: #FFFFFF;           /* Navbar text */
+  --ifm-navbar-link-hover-color: #A78BFA;     /* Navbar link hover (purple) */
+  --ifm-navbar-link-active-color: #7C3AED;    /* Active navbar link */
+
+  /* === SIDEBAR === */
+  --ifm-menu-color: #FFFFFF;                  /* Sidebar text */
+  --ifm-menu-color-background-active: #1A1A1A; /* Active item background */
+  --ifm-menu-color-background-hover: #2D2D2D; /* Hover background */
+
+  /* === FOOTER === */
+  --ifm-footer-background-color: #0A0A0A;
+  --ifm-footer-color: #D1D5DB;
+  --ifm-footer-link-color: #A78BFA;
+  --ifm-footer-link-hover-color: #C4B5FD;
+
+  /* === CODE BLOCKS (Dracula-inspired with purple accents) === */
+  --docusaurus-highlighted-code-line-bg: rgba(124, 58, 237, 0.2);
+  --ifm-code-background: #282a36;             /* Dracula background */
+}
+
+/* ============================================
+   COMPONENT-SPECIFIC STYLING
+   ============================================ */
+
+/* Buttons */
+.button--primary {
+  background-color: var(--ifm-color-primary);
+  border-color: var(--ifm-color-primary);
+  color: #FFFFFF;
+}
+
+.button--primary:hover {
+  background-color: var(--ifm-color-primary-dark);
+  border-color: var(--ifm-color-primary-dark);
+}
+
+.button--secondary {
+  border-color: var(--ifm-color-primary);
+  color: var(--ifm-color-primary);
+}
+
+.button--secondary:hover {
+  background-color: var(--ifm-color-primary);
+  color: #FFFFFF;
+}
+
+/* Links */
+a {
+  color: var(--ifm-color-primary);
+}
+
+a:hover {
+  color: var(--ifm-color-primary-dark);
+}
+
+/* Active sidebar items */
+.menu__link--active {
+  color: var(--ifm-color-primary);
+  font-weight: 600;
+}
+
+.menu__link--active:not(.menu__link--sublist) {
+  background-color: var(--ifm-menu-color-background-active);
+  border-left: 3px solid var(--ifm-color-primary);
+  padding-left: calc(var(--ifm-menu-link-padding-horizontal) - 3px);
+}
+
+/* === TYPOGRAPHY APPLICATION === */
+
+/* Headings with typography scale */
+h1 {
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-heading);
+  line-height: var(--line-height-heading);
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-subheading);
+  line-height: var(--line-height-subheading-h2);
+}
+
+h3 {
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-subheading);
+  line-height: var(--line-height-subheading-h3);
+}
+
+h4,
+h5,
+h6 {
+  font-weight: var(--font-weight-subheading);
+  line-height: var(--line-height-subheading);
+}
+
+h4 {
+  font-size: var(--font-size-h4);
+}
+
+h5 {
+  font-size: var(--font-size-h5);
+}
+
+h6 {
+  font-size: var(--font-size-h6);
+}
+
+/* Headings with purple accent (dark mode) */
+[data-theme='dark'] h1,
+[data-theme='dark'] h2,
+[data-theme='dark'] h3 {
+  color: var(--ifm-color-primary-light);
+}
+
+/* Body text with typography scale */
+p,
+li,
+td,
+article {
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+}
+
+small,
+.caption {
+  font-size: var(--font-size-small);
+}
+
+/* Code blocks */
+code {
+  font-size: var(--font-size-code);
+  line-height: var(--line-height-code);
+  background-color: var(--ifm-code-background);
+  border-radius: 4px;
+  padding: var(--spacing-xs) var(--spacing-sm);
+}
+
+/* Consistent spacing */
+.container {
+  padding-left: var(--ifm-spacing-horizontal);
+  padding-right: var(--ifm-spacing-horizontal);
+}
+
+.row {
+  margin-left: calc(-1 * var(--ifm-spacing-horizontal));
+  margin-right: calc(-1 * var(--ifm-spacing-horizontal));
+}
+
+/* Smooth transitions for navigation */
+.navbar,
+.menu {
+  transition: all 300ms ease-in-out;
+}
+
+/* Respect user motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Focus states with purple accent */
+a:focus,
+button:focus,
+input:focus,
+textarea:focus,
+select:focus {
+  outline: 2px solid var(--ifm-color-primary);
+  outline-offset: 2px;
+}
+
+/* Ensure sufficient contrast for text on dark backgrounds */
+[data-theme='dark'] {
+  --ifm-heading-color: #FFFFFF;
+  --ifm-link-color: var(--ifm-color-primary);
+  --ifm-link-hover-color: var(--ifm-color-primary-light);
+}
+
+/* ============================================
+   BLOG STYLES
+   ============================================ */
+
+/* Blog List Items */
+.blog-list__item {
+  background-color: var(--ifm-background-surface-color);
+  border: 1px solid rgba(124, 58, 237, 0.3);
+  border-radius: 8px;
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+  transition: border-color 0.3s ease, transform 0.2s ease;
+}
+
+.blog-list__item:hover {
+  border-color: var(--ifm-color-primary);
+  transform: translateY(-2px);
+}
+
+/* Blog Post Metadata */
+.blog-post__date,
+.blog-post__author {
+  color: var(--ifm-color-primary);
+  font-size: 0.875rem;
+}
+
+/* Blog Tags */
+.blog__tags {
+  display: flex;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+  margin-top: var(--spacing-base);
+}
+
+.blog__tag {
+  background-color: var(--ifm-color-primary);
+  color: #FFFFFF;
+  padding: var(--spacing-xs) var(--spacing-md);
+  border-radius: 4px;
+  font-size: var(--font-size-small);
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.blog__tag:hover {
+  background-color: var(--ifm-color-primary-dark);
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+/* Blog Post Title */
+article h1 {
+  color: var(--ifm-heading-color);
+  margin-bottom: var(--spacing-base);
+}
+
+/* Blog Sidebar */
+.blog-sidebar {
+  border-left: 2px solid var(--ifm-color-primary);
+  padding-left: var(--spacing-base);
+}
+
+.blog-sidebar__title {
+  color: var(--ifm-color-primary);
+  font-weight: 600;
+  margin-bottom: var(--spacing-base);
+}
+
+/* Blog Archive */
+.blog-archive {
+  color: var(--ifm-color-primary);
+}
+
+/* Code Blocks in Blog Posts */
+[data-theme='dark'] article pre {
+  background-color: #282a36;
+  border: 1px solid rgba(124, 58, 237, 0.3);
+  border-radius: 6px;
+}
+
+/* Blog Post Reading Time */
+.blog-post__reading-time {
+  color: var(--ifm-color-primary-light);
+  font-size: var(--font-size-small);
+}
+
+/* Blog Post Excerpt */
+.blog-post__excerpt {
+  color: var(--ifm-font-color-secondary);
+  line-height: 1.6;
+}
+
+/* Tag Page Header */
+.blog-tag__header {
+  background: linear-gradient(135deg, #0A0A0A, #1a0033);
+  border: 1px solid var(--ifm-color-primary);
+  border-radius: 8px;
+  padding: var(--spacing-xl);
+  margin-bottom: var(--spacing-xl);
+}
+
+/* Pagination */
+.pagination__item--active .pagination__link {
+  background-color: var(--ifm-color-primary);
+  border-color: var(--ifm-color-primary);
+}
+
+.pagination__item:not(.pagination__item--active) .pagination__link:hover {
+  background-color: var(--ifm-color-primary-dark);
+  color: #FFFFFF;
+}
+
+/* Blog Post Navigation (Prev/Next) */
+.pagination-nav__link {
+  border: 1px solid rgba(124, 58, 237, 0.3);
+  border-radius: 8px;
+  transition: border-color 0.3s ease;
+}
+
+.pagination-nav__link:hover {
+  border-color: var(--ifm-color-primary);
+  background-color: var(--ifm-background-surface-color);
+}
+
+.pagination-nav__label {
+  color: var(--ifm-color-primary);
+  font-weight: 600;
+}

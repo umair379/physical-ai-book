@@ -1,272 +1,612 @@
 /**
- * Purple+Black Theme for Physical AI & Humanoid Robotics Book
- * CSS custom properties for global color palette
+ * ============================================================================
+ * DESIGN SYSTEM - Physical AI Book
+ * ============================================================================
+ * Premium SaaS-style UI with clear color hierarchy
+ * White-based interface with Hot Pink primary, Purple secondary
+ *
+ * COLOR ROLES:
+ * - Primary (Hot Pink #ec4899): Main actions, primary CTAs, key highlights
+ * - Secondary (Purple #a855f7): Links, secondary actions, accents
+ * - Accent (Fuchsia #d946ef): Emphasis, badges, active states
+ * - Neutrals: Text, backgrounds, borders
+ * - System: Success, warning, error states
+ * ============================================================================
  */
 
-/* ============================================
-   PURPLE+BLACK COLOR PALETTE (Light Mode)
-   ============================================ */
+/* ============================================================================
+   LIGHT MODE - Base Color System
+   ============================================================================ */
+
 :root {
-  /* === PRIMARY BRAND COLORS (Purple) === */
-  --ifm-color-primary: #7C3AED;           /* Base purple (500) */
-  --ifm-color-primary-dark: #6D28D9;      /* Darker purple (600) for hover */
-  --ifm-color-primary-darker: #5B21B6;    /* Even darker (700) for emphasis */
-  --ifm-color-primary-darkest: #3F0F7D;   /* Darkest (800) for borders */
-  --ifm-color-primary-light: #A78BFA;     /* Light purple (400) for backgrounds */
-  --ifm-color-primary-lighter: #C4B5FD;   /* Lighter purple (300) for hover states */
-  --ifm-color-primary-lightest: #E9D5FF;  /* Lightest purple (200) for disabled */
+  /* ===== PRIMARY COLOR (Hot Pink) - Main Actions ===== */
+  --ifm-color-primary: #ec4899;           /* rose-500 - Primary buttons, main CTAs */
+  --ifm-color-primary-dark: #db2777;      /* rose-600 - Hover states */
+  --ifm-color-primary-darker: #be185d;    /* rose-700 - Active states */
+  --ifm-color-primary-darkest: #9f1239;   /* rose-800 - Pressed states */
+  --ifm-color-primary-light: #f472b6;     /* rose-400 - Lighter accents */
+  --ifm-color-primary-lighter: #f9a8d4;   /* rose-300 - Subtle backgrounds */
+  --ifm-color-primary-lightest: #fce7f3;  /* rose-100 - Very light backgrounds */
 
-  /* === TYPOGRAPHY === */
-  --ifm-font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  --ifm-font-family-monospace: 'Menlo', 'Monaco', 'Courier New', monospace;
+  /* ===== SECONDARY COLOR (Purple) - Links & Secondary Actions ===== */
+  --ifm-color-secondary: #a855f7;         /* violet-500 - Links, secondary buttons */
+  --ifm-color-secondary-dark: #9333ea;    /* violet-600 - Hover states */
+  --ifm-color-secondary-darker: #7e22ce;  /* violet-700 - Active states */
+  --ifm-color-secondary-light: #c084fc;   /* violet-400 - Lighter accents */
+  --ifm-color-secondary-lighter: #e9d5ff; /* violet-200 - Backgrounds */
+  --ifm-color-secondary-lightest: #f5f3ff;/* violet-50 - Very light backgrounds */
+
+  /* ===== ACCENT COLOR (Fuchsia) - Emphasis ===== */
+  --ifm-color-accent: #d946ef;            /* fuchsia-500 - Badges, active states */
+  --ifm-color-accent-dark: #c026d3;       /* fuchsia-600 - Emphasis hover */
+  --ifm-color-accent-light: #e879f9;      /* fuchsia-400 - Light emphasis */
+
+  /* ===== NEUTRAL COLORS - Base Palette ===== */
+  /* Backgrounds */
+  --ifm-background-color: #ffffff;        /* Pure white - Page base */
+  --ifm-background-surface-color: #f9fafb;/* Gray-50 - Cards, surfaces */
+  --ifm-background-gradient: linear-gradient(180deg, #ffffff 0%, #fce7f3 100%); /* Hero gradient */
+
+  /* Text Colors */
+  --ifm-font-color-base: #0f172a;         /* Slate-900 - Primary text */
+  --ifm-font-color-base-inverse: #ffffff; /* White - Text on dark backgrounds */
+  --ifm-font-color-secondary: #475569;    /* Slate-600 - Secondary text */
+  --ifm-font-color-muted: #94a3b8;        /* Slate-400 - Muted text, labels */
+
+  /* Borders & Dividers */
+  --ifm-color-emphasis-100: #f3f4f6;      /* Gray-100 - Very light borders */
+  --ifm-color-emphasis-200: #e5e7eb;      /* Gray-200 - Default borders */
+  --ifm-color-emphasis-300: #d1d5db;      /* Gray-300 - Medium borders */
+  --ifm-color-emphasis-400: #9ca3af;      /* Gray-400 - Strong borders */
+  --ifm-hr-background-color: #e5e7eb;     /* Horizontal rule color */
+
+  /* Code Blocks */
+  --ifm-code-background: #f9fafb;         /* Gray-50 - Code background */
+  --ifm-pre-background: #f9fafb;          /* Pre block background */
+  --ifm-pre-color: #0f172a;               /* Code text color */
+
+  /* Navbar */
+  --ifm-navbar-background-color: rgba(255, 255, 255, 0.9); /* Translucent white */
+  --ifm-navbar-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  --ifm-navbar-link-color: var(--ifm-font-color-secondary);
+  --ifm-navbar-link-hover-color: var(--ifm-color-primary);
+  --ifm-navbar-link-active-color: var(--ifm-color-primary);
+
+  /* Footer */
+  --ifm-footer-background-color: #f9fafb;
+  --ifm-footer-color: var(--ifm-font-color-secondary);
+  --ifm-footer-link-color: var(--ifm-font-color-muted);
+
+  /* Links - Use Secondary Color */
+  --ifm-link-color: var(--ifm-color-secondary);
+  --ifm-link-hover-color: var(--ifm-color-primary);
+
+  /* ===== SYSTEM COLORS - Status & Feedback ===== */
+  --ifm-color-success: #10b981;           /* Emerald-500 - Success states */
+  --ifm-color-success-dark: #059669;      /* Emerald-600 */
+  --ifm-color-success-light: #d1fae5;     /* Emerald-100 */
+
+  --ifm-color-info: #3b82f6;              /* Blue-500 - Info states */
+  --ifm-color-info-dark: #2563eb;         /* Blue-600 */
+  --ifm-color-info-light: #dbeafe;        /* Blue-100 */
+
+  --ifm-color-warning: #f59e0b;           /* Amber-500 - Warning states */
+  --ifm-color-warning-dark: #d97706;      /* Amber-600 */
+  --ifm-color-warning-light: #fef3c7;     /* Amber-100 */
+
+  --ifm-color-danger: #ef4444;            /* Red-500 - Error states */
+  --ifm-color-danger-dark: #dc2626;       /* Red-600 */
+  --ifm-color-danger-light: #fee2e2;      /* Red-100 */
+
+  /* ===== TYPOGRAPHY SYSTEM ===== */
+  --ifm-font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --ifm-font-family-monospace: "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, "Courier New", monospace;
   --ifm-font-size-base: 16px;
-  --ifm-line-height-base: 1.5;
-  --ifm-code-font-size: 95%;
+  --ifm-line-height-base: 1.65;           /* Comfortable reading */
+  --ifm-heading-font-weight: 700;         /* Bold headings */
+  --ifm-heading-line-height: 1.25;        /* Tight heading spacing */
 
-  /* === TYPOGRAPHY SCALE === */
-  /* Font Sizes */
-  --font-size-h1: 2.5rem;      /* 40px */
-  --font-size-h2: 2rem;        /* 32px */
-  --font-size-h3: 1.5rem;      /* 24px */
-  --font-size-h4: 1.25rem;     /* 20px */
-  --font-size-h5: 1.125rem;    /* 18px */
-  --font-size-h6: 1rem;        /* 16px */
-  --font-size-body: 1rem;      /* 16px */
-  --font-size-small: 0.875rem; /* 14px */
-  --font-size-code: 0.875rem;  /* 14px */
+  /* ===== SHADOWS - Premium Feel ===== */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  --shadow-glow-primary: 0 0 20px rgba(236, 72, 153, 0.3);
+  --shadow-glow-secondary: 0 0 20px rgba(168, 85, 247, 0.3);
 
-  /* Font Weights */
-  --font-weight-heading: 700;     /* Bold for H1 */
-  --font-weight-subheading: 600;  /* Semi-bold for H2-H6 */
-  --font-weight-body: 400;        /* Normal */
-
-  /* Line Heights */
-  --line-height-heading: 1.2;
-  --line-height-subheading-h2: 1.25;
-  --line-height-subheading-h3: 1.3;
-  --line-height-subheading: 1.4;
-  --line-height-body: 1.6;
-  --line-height-code: 1.6;
-
-  /* === SPACING SCALE (4px base unit) === */
-  --spacing-xs: 0.25rem;   /* 4px */
-  --spacing-sm: 0.5rem;    /* 8px */
-  --spacing-md: 0.75rem;   /* 12px */
-  --spacing-base: 1rem;    /* 16px */
-  --spacing-lg: 1.5rem;    /* 24px */
-  --spacing-xl: 2rem;      /* 32px */
-  --spacing-2xl: 3rem;     /* 48px */
-  --spacing-3xl: 4rem;     /* 64px */
-
-  /* Legacy spacing (kept for Docusaurus compatibility) */
-  --ifm-spacing-horizontal: var(--spacing-base);
-  --ifm-spacing-vertical: var(--spacing-base);
-  --ifm-global-spacing: var(--spacing-base);
-
-  /* === SEMANTIC COLORS === */
-  --color-info: #3B82F6;       /* Blue (4.7:1 contrast on black) */
-  --color-success: #10B981;    /* Green (6.1:1 contrast on black) */
-  --color-warning: #F59E0B;    /* Orange (7.8:1 contrast on black) */
-  --color-danger: #F87171;     /* Red (5.2:1 contrast on black) */
-
-  /* === LIGHT MODE BACKGROUNDS === */
-  --ifm-background-color: #FFFFFF;
-  --ifm-background-surface-color: #F3F4F6;
-
-  /* === CODE BLOCKS === */
-  --docusaurus-highlighted-code-line-bg: rgba(124, 58, 237, 0.1);
+  /* ===== TRANSITIONS ===== */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* ============================================
-   DARK MODE (Purple+Black)
-   ============================================ */
+/* ============================================================================
+   DARK MODE - Premium Dark Palette
+   ============================================================================ */
+
 [data-theme='dark'] {
-  /* === PRIMARY BRAND COLORS (Purple) === */
-  --ifm-color-primary: #A78BFA;           /* Light purple for dark mode */
-  --ifm-color-primary-dark: #7C3AED;      /* Base purple for hover */
-  --ifm-color-primary-darker: #6D28D9;    /* Darker purple for emphasis */
-  --ifm-color-primary-darkest: #5B21B6;   /* Darkest purple for borders */
-  --ifm-color-primary-light: #C4B5FD;     /* Lighter purple for backgrounds */
-  --ifm-color-primary-lighter: #E9D5FF;   /* Lightest purple for hover states */
-  --ifm-color-primary-lightest: #F3E8FF;  /* Very light purple for disabled */
+  /* ===== PRIMARY COLOR (Hot Pink) - Stays Consistent ===== */
+  --ifm-color-primary: #ec4899;
+  --ifm-color-primary-dark: #db2777;
+  --ifm-color-primary-darker: #be185d;
+  --ifm-color-primary-darkest: #9f1239;
+  --ifm-color-primary-light: #f472b6;
+  --ifm-color-primary-lighter: #f9a8d4;
+  --ifm-color-primary-lightest: #fce7f3;
 
-  /* === DARK MODE BACKGROUNDS (Black/Dark Gray) === */
-  --ifm-background-color: #0A0A0A;        /* Main page background (black) */
-  --ifm-background-surface-color: #1A1A1A; /* Card/component surface */
-  --ifm-color-emphasis-100: #2D2D2D;      /* Border color */
-  --ifm-color-emphasis-200: #3D3D3D;
-  --ifm-color-emphasis-300: #4D4D4D;
-  --ifm-color-emphasis-400: #5D5D5D;
-  --ifm-color-emphasis-500: #6D6D6D;
-  --ifm-color-emphasis-600: #7D7D7D;
-  --ifm-color-emphasis-700: #8D8D8D;
-  --ifm-color-emphasis-800: #9D9D9D;
-  --ifm-color-emphasis-900: #ADADAD;
-  --ifm-color-emphasis-1000: #BDBDBD;
+  /* ===== SECONDARY COLOR (Purple) - Stays Consistent ===== */
+  --ifm-color-secondary: #a855f7;
+  --ifm-color-secondary-dark: #9333ea;
+  --ifm-color-secondary-darker: #7e22ce;
+  --ifm-color-secondary-light: #c084fc;
+  --ifm-color-secondary-lighter: #e9d5ff;
+  --ifm-color-secondary-lightest: #f5f3ff;
 
-  /* === TEXT COLORS === */
-  --ifm-font-color-base: #FFFFFF;         /* Primary text (white) */
-  --ifm-color-content: #FFFFFF;           /* Content text */
-  --ifm-font-color-secondary: #D1D5DB;    /* Secondary text (light gray) */
-  --ifm-color-content-secondary: #D1D5DB;
+  /* ===== ACCENT COLOR (Fuchsia) - Stays Consistent ===== */
+  --ifm-color-accent: #d946ef;
+  --ifm-color-accent-dark: #c026d3;
+  --ifm-color-accent-light: #e879f9;
 
-  /* === NAVBAR === */
-  --ifm-navbar-background-color: #0A0A0A;     /* Navbar background */
-  --ifm-navbar-link-color: #FFFFFF;           /* Navbar text */
-  --ifm-navbar-link-hover-color: #A78BFA;     /* Navbar link hover (purple) */
-  --ifm-navbar-link-active-color: #7C3AED;    /* Active navbar link */
+  /* ===== NEUTRAL COLORS - Dark Mode ===== */
+  /* Backgrounds */
+  --ifm-background-color: #0a0a0a;        /* Deep black */
+  --ifm-background-surface-color: #1a1a1a;/* Charcoal - Cards */
+  --ifm-background-gradient: linear-gradient(180deg, #0a0a0a 0%, #1a0a14 100%); /* Dark gradient */
 
-  /* === SIDEBAR === */
-  --ifm-menu-color: #FFFFFF;                  /* Sidebar text */
-  --ifm-menu-color-background-active: #1A1A1A; /* Active item background */
-  --ifm-menu-color-background-hover: #2D2D2D; /* Hover background */
+  /* Text Colors */
+  --ifm-font-color-base: #f8fafc;         /* Slate-50 - Primary text */
+  --ifm-font-color-base-inverse: #0a0a0a; /* Black - Inverse */
+  --ifm-font-color-secondary: #cbd5e1;    /* Slate-300 - Secondary text */
+  --ifm-font-color-muted: #94a3b8;        /* Slate-400 - Muted text */
 
-  /* === FOOTER === */
-  --ifm-footer-background-color: #0A0A0A;
-  --ifm-footer-color: #D1D5DB;
-  --ifm-footer-link-color: #A78BFA;
-  --ifm-footer-link-hover-color: #C4B5FD;
+  /* Borders & Dividers */
+  --ifm-color-emphasis-100: #262626;      /* Gray-800 - Very light borders */
+  --ifm-color-emphasis-200: #404040;      /* Gray-700 - Default borders */
+  --ifm-color-emphasis-300: #525252;      /* Gray-600 - Medium borders */
+  --ifm-color-emphasis-400: #737373;      /* Gray-500 - Strong borders */
+  --ifm-hr-background-color: #404040;
 
-  /* === CODE BLOCKS (Dracula-inspired with purple accents) === */
-  --docusaurus-highlighted-code-line-bg: rgba(124, 58, 237, 0.2);
-  --ifm-code-background: #282a36;             /* Dracula background */
+  /* Code Blocks */
+  --ifm-code-background: #1a1a1a;
+  --ifm-pre-background: #1a1a1a;
+  --ifm-pre-color: #f8fafc;
+
+  /* Navbar */
+  --ifm-navbar-background-color: rgba(26, 26, 26, 0.9);
+  --ifm-navbar-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.5);
+
+  /* Footer */
+  --ifm-footer-background-color: #0a0a0a;
+  --ifm-footer-color: var(--ifm-font-color-secondary);
+  --ifm-footer-link-color: var(--ifm-font-color-muted);
+
+  /* Links */
+  --ifm-link-color: var(--ifm-color-secondary);
+  --ifm-link-hover-color: var(--ifm-color-primary);
+
+  /* ===== SYSTEM COLORS - Dark Mode Variants ===== */
+  --ifm-color-success: #34d399;           /* Emerald-400 */
+  --ifm-color-success-dark: #10b981;
+  --ifm-color-success-light: #064e3b;
+
+  --ifm-color-info: #60a5fa;              /* Blue-400 */
+  --ifm-color-info-dark: #3b82f6;
+  --ifm-color-info-light: #1e3a8a;
+
+  --ifm-color-warning: #fbbf24;           /* Amber-400 */
+  --ifm-color-warning-dark: #f59e0b;
+  --ifm-color-warning-light: #78350f;
+
+  --ifm-color-danger: #f87171;            /* Red-400 */
+  --ifm-color-danger-dark: #ef4444;
+  --ifm-color-danger-light: #7f1d1d;
+
+  /* ===== SHADOWS - Dark Mode ===== */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -4px rgba(0, 0, 0, 0.4);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
 }
 
-/* ============================================
-   COMPONENT-SPECIFIC STYLING
-   ============================================ */
+/* ============================================================================
+   GLOBAL STYLES - Page Background
+   ============================================================================ */
 
-/* Buttons */
-.button--primary {
-  background-color: var(--ifm-color-primary);
-  border-color: var(--ifm-color-primary);
-  color: #FFFFFF;
+body {
+  background: var(--ifm-background-color);
+  color: var(--ifm-font-color-base);
 }
 
-.button--primary:hover {
-  background-color: var(--ifm-color-primary-dark);
-  border-color: var(--ifm-color-primary-dark);
+/* Subtle gradient on main content */
+.main-wrapper {
+  background: var(--ifm-background-gradient);
+  min-height: 100vh;
 }
 
-.button--secondary {
-  border-color: var(--ifm-color-primary);
-  color: var(--ifm-color-primary);
+/* ============================================================================
+   TYPOGRAPHY - Premium Hierarchy
+   ============================================================================ */
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--ifm-font-color-base);
+  font-weight: var(--ifm-heading-font-weight);
+  line-height: var(--ifm-heading-line-height);
+  letter-spacing: -0.02em; /* Slightly tighter for premium feel */
 }
 
-.button--secondary:hover {
-  background-color: var(--ifm-color-primary);
-  color: #FFFFFF;
-}
-
-/* Links */
-a {
-  color: var(--ifm-color-primary);
-}
-
-a:hover {
-  color: var(--ifm-color-primary-dark);
-}
-
-/* Active sidebar items */
-.menu__link--active {
-  color: var(--ifm-color-primary);
-  font-weight: 600;
-}
-
-.menu__link--active:not(.menu__link--sublist) {
-  background-color: var(--ifm-menu-color-background-active);
-  border-left: 3px solid var(--ifm-color-primary);
-  padding-left: calc(var(--ifm-menu-link-padding-horizontal) - 3px);
-}
-
-/* === TYPOGRAPHY APPLICATION === */
-
-/* Headings with typography scale */
 h1 {
-  font-size: var(--font-size-h1);
-  font-weight: var(--font-weight-heading);
-  line-height: var(--line-height-heading);
+  font-size: 3rem;          /* 48px */
+  font-weight: 800;         /* Extra bold for impact */
+  margin: 0 0 1.5rem;
 }
 
 h2 {
-  font-size: var(--font-size-h2);
-  font-weight: var(--font-weight-subheading);
-  line-height: var(--line-height-subheading-h2);
+  font-size: 2.25rem;       /* 36px */
+  font-weight: 700;
+  margin: 3rem 0 1.25rem;
 }
 
 h3 {
-  font-size: var(--font-size-h3);
-  font-weight: var(--font-weight-subheading);
-  line-height: var(--line-height-subheading-h3);
-}
-
-h4,
-h5,
-h6 {
-  font-weight: var(--font-weight-subheading);
-  line-height: var(--line-height-subheading);
+  font-size: 1.75rem;       /* 28px */
+  font-weight: 700;
+  margin: 2.5rem 0 1rem;
 }
 
 h4 {
-  font-size: var(--font-size-h4);
+  font-size: 1.375rem;      /* 22px */
+  font-weight: 600;
+  margin: 2rem 0 0.875rem;
 }
 
 h5 {
-  font-size: var(--font-size-h5);
+  font-size: 1.125rem;      /* 18px */
+  font-weight: 600;
+  margin: 1.5rem 0 0.75rem;
 }
 
 h6 {
-  font-size: var(--font-size-h6);
+  font-size: 1rem;          /* 16px */
+  font-weight: 600;
+  margin: 1.5rem 0 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ifm-font-color-secondary);
 }
 
-/* Headings with purple accent (dark mode) */
-[data-theme='dark'] h1,
-[data-theme='dark'] h2,
-[data-theme='dark'] h3 {
+p {
+  color: var(--ifm-font-color-secondary);
+  line-height: var(--ifm-line-height-base);
+  margin: 0 0 1.25rem;
+}
+
+/* ============================================================================
+   BUTTONS - PRIMARY COLOR with Gradient & Glow
+   ============================================================================ */
+
+.button,
+button[class*="button"] {
+  border-radius: 8px;
+  padding: 0.75rem 1.75rem;
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Primary Button - Hot Pink Gradient */
+.button--primary,
+.button.button--primary {
+  background: linear-gradient(135deg, var(--ifm-color-primary) 0%, var(--ifm-color-accent) 100%);
+  color: white;
+  box-shadow: var(--shadow-md);
+}
+
+.button--primary:hover {
+  background: linear-gradient(135deg, var(--ifm-color-primary-dark) 0%, var(--ifm-color-accent-dark) 100%);
+  box-shadow: var(--shadow-lg), var(--shadow-glow-primary);
+  transform: translateY(-2px) scale(1.02);
+  color: white;
+}
+
+.button--primary:active {
+  transform: translateY(0) scale(1);
+  box-shadow: var(--shadow-md);
+}
+
+/* Secondary Button - Purple Outline */
+.button--secondary,
+.button.button--secondary {
+  background: transparent;
+  border: 2px solid var(--ifm-color-secondary);
+  color: var(--ifm-color-secondary);
+  box-shadow: none;
+}
+
+.button--secondary:hover {
+  background: var(--ifm-color-secondary);
+  color: white;
+  box-shadow: var(--shadow-md), var(--shadow-glow-secondary);
+  transform: translateY(-2px) scale(1.02);
+}
+
+/* Default Button Fallback */
+.button {
+  background: linear-gradient(135deg, var(--ifm-color-primary) 0%, var(--ifm-color-accent) 100%);
+  color: white;
+  box-shadow: var(--shadow-md);
+}
+
+.button:hover {
+  background: linear-gradient(135deg, var(--ifm-color-primary-dark) 0%, var(--ifm-color-accent-dark) 100%);
+  box-shadow: var(--shadow-lg), var(--shadow-glow-primary);
+  transform: translateY(-2px) scale(1.02);
+  text-decoration: none;
+  color: white;
+}
+
+/* Disabled State */
+.button:disabled,
+.button[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* ============================================================================
+   CARDS - Surface with Lift Effect
+   ============================================================================ */
+
+.card {
+  background: var(--ifm-background-surface-color);
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-base);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-xl);
+  transform: translateY(-6px);
+  border-color: var(--ifm-color-emphasis-300);
+}
+
+[data-theme='dark'] .card {
+  background: var(--ifm-background-surface-color);
+  border-color: var(--ifm-color-emphasis-200);
+  box-shadow: var(--shadow-lg);
+}
+
+[data-theme='dark'] .card:hover {
+  box-shadow: var(--shadow-xl), 0 0 30px rgba(236, 72, 153, 0.15);
+}
+
+/* ============================================================================
+   LINKS - SECONDARY COLOR (Purple)
+   ============================================================================ */
+
+a {
+  color: var(--ifm-link-color);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  font-weight: 500;
+}
+
+a:hover {
+  color: var(--ifm-link-hover-color);
+  text-decoration: underline;
+  text-decoration-color: var(--ifm-color-primary);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+/* ============================================================================
+   CODE BLOCKS - Clean Monospace
+   ============================================================================ */
+
+code {
+  background-color: var(--ifm-code-background);
+  border-radius: 4px;
+  padding: 0.2rem 0.4rem;
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.9em;
+  color: var(--ifm-color-primary-dark);
+  font-weight: 500;
+}
+
+[data-theme='dark'] code {
   color: var(--ifm-color-primary-light);
 }
 
-/* Body text with typography scale */
-p,
-li,
-td,
-article {
-  font-size: var(--font-size-body);
-  line-height: var(--line-height-body);
+pre {
+  background-color: var(--ifm-pre-background);
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 8px;
+  padding: 1.5rem;
+  overflow-x: auto;
+  box-shadow: var(--shadow-sm);
 }
 
-small,
-.caption {
-  font-size: var(--font-size-small);
+pre code {
+  background: none;
+  padding: 0;
+  color: var(--ifm-pre-color);
 }
 
-/* Code blocks */
-code {
-  font-size: var(--font-size-code);
-  line-height: var(--line-height-code);
-  background-color: var(--ifm-code-background);
+/* ============================================================================
+   FORMS - Input Fields
+   ============================================================================ */
+
+input,
+textarea,
+select {
+  background: var(--ifm-background-surface-color);
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 6px;
+  padding: 0.625rem 0.875rem;
+  font-size: 1rem;
+  color: var(--ifm-font-color-base);
+  transition: all var(--transition-fast);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--ifm-color-primary);
+  box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.1);
+}
+
+/* ============================================================================
+   TABLES - Structured Data
+   ============================================================================ */
+
+table {
+  border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  width: 100%;
+}
+
+th {
+  background: linear-gradient(135deg, var(--ifm-color-primary-lightest), var(--ifm-color-secondary-lightest));
+  padding: 1rem;
+  font-weight: 600;
+  text-align: left;
+  color: var(--ifm-color-primary-darkest);
+  border-bottom: 2px solid var(--ifm-color-emphasis-300);
+}
+
+[data-theme='dark'] th {
+  background: linear-gradient(135deg, #1a1a1a, #2a1a2a);
+  color: var(--ifm-color-primary-light);
+}
+
+td {
+  padding: 1rem;
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+  color: var(--ifm-font-color-secondary);
+}
+
+tr:nth-child(even) {
+  background-color: var(--ifm-color-emphasis-100);
+}
+
+tr:hover {
+  background-color: var(--ifm-color-primary-lightest);
+}
+
+[data-theme='dark'] tr:hover {
+  background-color: rgba(236, 72, 153, 0.05);
+}
+
+/* ============================================================================
+   BLOCKQUOTES - Emphasis
+   ============================================================================ */
+
+blockquote {
+  border-left: 4px solid var(--ifm-color-primary);
+  background: linear-gradient(90deg, rgba(236, 72, 153, 0.05), transparent);
+  padding: 1.25rem 1.5rem;
+  margin: 2rem 0;
+  font-style: italic;
+  color: var(--ifm-font-color-secondary);
+  border-radius: 0 8px 8px 0;
+}
+
+[data-theme='dark'] blockquote {
+  background: linear-gradient(90deg, rgba(236, 72, 153, 0.1), transparent);
+}
+
+/* ============================================================================
+   BADGES - ACCENT COLOR for Emphasis
+   ============================================================================ */
+
+.badge {
+  display: inline-block;
+  padding: 0.375rem 0.875rem;
+  border-radius: 16px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.badge--primary {
+  background: linear-gradient(135deg, var(--ifm-color-primary), var(--ifm-color-accent));
+  color: white;
+}
+
+.badge--secondary {
+  background: var(--ifm-color-secondary-lighter);
+  color: var(--ifm-color-secondary-darkest);
+}
+
+.badge--success {
+  background: var(--ifm-color-success-light);
+  color: var(--ifm-color-success-dark);
+}
+
+.badge--warning {
+  background: var(--ifm-color-warning-light);
+  color: var(--ifm-color-warning-dark);
+}
+
+.badge--danger {
+  background: var(--ifm-color-danger-light);
+  color: var(--ifm-color-danger-dark);
+}
+
+/* ============================================================================
+   DIVIDERS - Horizontal Rules
+   ============================================================================ */
+
+hr {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--ifm-color-emphasis-300), transparent);
+  border: none;
+  margin: 3rem 0;
+}
+
+/* Section divider with gradient */
+.section-divider {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--ifm-color-primary), var(--ifm-color-accent), transparent);
+  border: none;
+  margin: 4rem 0;
+}
+
+/* ============================================================================
+   ACCESSIBILITY - Focus States
+   ============================================================================ */
+
+:focus-visible {
+  outline: 2px solid var(--ifm-color-primary);
+  outline-offset: 3px;
   border-radius: 4px;
-  padding: var(--spacing-xs) var(--spacing-sm);
 }
 
-/* Consistent spacing */
-.container {
-  padding-left: var(--ifm-spacing-horizontal);
-  padding-right: var(--ifm-spacing-horizontal);
+a:focus-visible {
+  outline: 2px solid var(--ifm-color-secondary);
+  text-decoration: underline;
 }
 
-.row {
-  margin-left: calc(-1 * var(--ifm-spacing-horizontal));
-  margin-right: calc(-1 * var(--ifm-spacing-horizontal));
+button:focus-visible,
+.button:focus-visible {
+  outline: 3px solid var(--ifm-color-primary-light);
+  outline-offset: 3px;
 }
 
-/* Smooth transitions for navigation */
-.navbar,
-.menu {
-  transition: all 300ms ease-in-out;
-}
+/* ============================================================================
+   ACCESSIBILITY - Reduced Motion
+   ============================================================================ */
 
-/* Respect user motion preferences */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -277,148 +617,64 @@ code {
   }
 }
 
-/* Focus states with purple accent */
-a:focus,
-button:focus,
-input:focus,
-textarea:focus,
-select:focus {
-  outline: 2px solid var(--ifm-color-primary);
-  outline-offset: 2px;
+/* ============================================================================
+   RESPONSIVE - Mobile Optimization
+   ============================================================================ */
+
+@media (max-width: 768px) {
+  :root {
+    --ifm-font-size-base: 15px;
+  }
+
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.75rem; }
+  h3 { font-size: 1.5rem; }
+  h4 { font-size: 1.25rem; }
+  h5 { font-size: 1.125rem; }
+  h6 { font-size: 1rem; }
+
+  .button {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.95rem;
+  }
+
+  .card {
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+  }
 }
 
-/* Ensure sufficient contrast for text on dark backgrounds */
-[data-theme='dark'] {
-  --ifm-heading-color: #FFFFFF;
-  --ifm-link-color: var(--ifm-color-primary);
-  --ifm-link-hover-color: var(--ifm-color-primary-light);
+/* ============================================================================
+   RESPONSIVE - Desktop Enhancement
+   ============================================================================ */
+
+@media (min-width: 1024px) {
+  .card {
+    padding: 2.5rem;
+  }
+
+  h1 {
+    font-size: 3.5rem;
+  }
 }
 
-/* ============================================
-   BLOG STYLES
-   ============================================ */
+/* ============================================================================
+   PRINT STYLES - Clean Output
+   ============================================================================ */
 
-/* Blog List Items */
-.blog-list__item {
-  background-color: var(--ifm-background-surface-color);
-  border: 1px solid rgba(124, 58, 237, 0.3);
-  border-radius: 8px;
-  padding: var(--spacing-lg);
-  margin-bottom: var(--spacing-lg);
-  transition: border-color 0.3s ease, transform 0.2s ease;
-}
+@media print {
+  [data-theme] {
+    --ifm-color-primary: #ec4899;
+    --ifm-background-color: #ffffff;
+    --ifm-font-color-base: #0f172a;
+  }
 
-.blog-list__item:hover {
-  border-color: var(--ifm-color-primary);
-  transform: translateY(-2px);
-}
+  .button,
+  .card {
+    box-shadow: none;
+  }
 
-/* Blog Post Metadata */
-.blog-post__date,
-.blog-post__author {
-  color: var(--ifm-color-primary);
-  font-size: 0.875rem;
-}
-
-/* Blog Tags */
-.blog__tags {
-  display: flex;
-  gap: var(--spacing-sm);
-  flex-wrap: wrap;
-  margin-top: var(--spacing-base);
-}
-
-.blog__tag {
-  background-color: var(--ifm-color-primary);
-  color: #FFFFFF;
-  padding: var(--spacing-xs) var(--spacing-md);
-  border-radius: 4px;
-  font-size: var(--font-size-small);
-  text-decoration: none;
-  transition: background-color 0.3s ease;
-}
-
-.blog__tag:hover {
-  background-color: var(--ifm-color-primary-dark);
-  color: #FFFFFF;
-  text-decoration: none;
-}
-
-/* Blog Post Title */
-article h1 {
-  color: var(--ifm-heading-color);
-  margin-bottom: var(--spacing-base);
-}
-
-/* Blog Sidebar */
-.blog-sidebar {
-  border-left: 2px solid var(--ifm-color-primary);
-  padding-left: var(--spacing-base);
-}
-
-.blog-sidebar__title {
-  color: var(--ifm-color-primary);
-  font-weight: 600;
-  margin-bottom: var(--spacing-base);
-}
-
-/* Blog Archive */
-.blog-archive {
-  color: var(--ifm-color-primary);
-}
-
-/* Code Blocks in Blog Posts */
-[data-theme='dark'] article pre {
-  background-color: #282a36;
-  border: 1px solid rgba(124, 58, 237, 0.3);
-  border-radius: 6px;
-}
-
-/* Blog Post Reading Time */
-.blog-post__reading-time {
-  color: var(--ifm-color-primary-light);
-  font-size: var(--font-size-small);
-}
-
-/* Blog Post Excerpt */
-.blog-post__excerpt {
-  color: var(--ifm-font-color-secondary);
-  line-height: 1.6;
-}
-
-/* Tag Page Header */
-.blog-tag__header {
-  background: linear-gradient(135deg, #0A0A0A, #1a0033);
-  border: 1px solid var(--ifm-color-primary);
-  border-radius: 8px;
-  padding: var(--spacing-xl);
-  margin-bottom: var(--spacing-xl);
-}
-
-/* Pagination */
-.pagination__item--active .pagination__link {
-  background-color: var(--ifm-color-primary);
-  border-color: var(--ifm-color-primary);
-}
-
-.pagination__item:not(.pagination__item--active) .pagination__link:hover {
-  background-color: var(--ifm-color-primary-dark);
-  color: #FFFFFF;
-}
-
-/* Blog Post Navigation (Prev/Next) */
-.pagination-nav__link {
-  border: 1px solid rgba(124, 58, 237, 0.3);
-  border-radius: 8px;
-  transition: border-color 0.3s ease;
-}
-
-.pagination-nav__link:hover {
-  border-color: var(--ifm-color-primary);
-  background-color: var(--ifm-background-surface-color);
-}
-
-.pagination-nav__label {
-  color: var(--ifm-color-primary);
-  font-weight: 600;
+  .button {
+    background: var(--ifm-color-primary);
+  }
 }

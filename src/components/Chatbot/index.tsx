@@ -45,7 +45,10 @@ export default function Chatbot(): JSX.Element {
     setIsLoading(true);
 
     try {
-      const response = await fetch('https://umair379-deploy-backend.hf.space', {
+      // Use environment variable for API URL, fallback to localhost for development
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+
+      const response = await fetch(`${apiUrl}/api/query`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -75,7 +78,7 @@ export default function Chatbot(): JSX.Element {
 
       const errorMessage: Message = {
         id: (Date.now() + 1).toString(),
-        text: 'Sorry, I\'m having trouble connecting to the server. Please make sure the backend is running on http://localhost:8000',
+        text: 'Sorry, I\'m having trouble connecting to the server. Please try again later.',
         sender: 'bot',
         timestamp: new Date(),
       };

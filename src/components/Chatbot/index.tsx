@@ -11,7 +11,7 @@ interface Message {
 
 export default function Chatbot(): JSX.Element {
   const { siteConfig } = useDocusaurusContext();
-  const apiUrl = (siteConfig.customFields?.apiUrl as string) || 'http://localhost:8000';
+  const apiUrl = (siteConfig.customFields?.apiUrl as string) || 'https://umair379-deploy-backend.hf.space';
 
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([

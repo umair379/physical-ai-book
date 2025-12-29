@@ -9,6 +9,12 @@ const config: Config = {
   tagline: 'Master ROS 2, Simulation, AI Perception, and Voice-Controlled Robots',
   favicon: 'img/favicon.ico',
 
+  // Custom fields for runtime access
+  customFields: {
+    // Backend API URL - loaded from environment variable or fallback to localhost
+    apiUrl: process.env.API_URL || 'http://localhost:8000',
+  },
+
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
     v4: true, // Improve compatibility with the upcoming Docusaurus v4

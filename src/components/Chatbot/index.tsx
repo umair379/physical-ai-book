@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import styles from './styles.module.css';
 
 interface Message {
@@ -9,6 +10,9 @@ interface Message {
 }
 
 export default function Chatbot(): JSX.Element {
+  const { siteConfig } = useDocusaurusContext();
+  const apiUrl = (siteConfig.customFields?.apiUrl as string) || 'http://localhost:8000';
+
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
@@ -45,9 +49,6 @@ export default function Chatbot(): JSX.Element {
     setIsLoading(true);
 
     try {
-      // Use environment variable for API URL, fallback to localhost for development
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
-
       const response = await fetch(`${apiUrl}/api/query`, {
         method: 'POST',
         headers: {

@@ -45,7 +45,7 @@ export default function Chatbot(): JSX.Element {
     setIsLoading(true);
 
     try {
-      const response = await fetch('http://localhost:8000/api/query', {
+      const response = await fetch('https://umair379-deploy-backend.hf.space', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -1,0 +1,349 @@
+# Content Structure Contract: Module 1 - The Robotic Nervous System (ROS 2)
+# Defines the organization of chapters, sections, and content blocks
+
+module:
+  id: "module-1"
+  number: 1
+  title: "The Robotic Nervous System (ROS 2)"
+  description: "Learn how ROS 2 serves as middleware for robot control, integrate Python AI agents with robot controllers, and model humanoid robots using URDF."
+  learning_objectives:
+    - "Understand ROS 2 nodes, topics, and services communication patterns"
+    - "Integrate Python AI agents with ROS 2 using rclpy"
+    - "Create URDF models for humanoid robots and visualize in simulators"
+  prerequisites:
+    - "Basic Python programming (functions, classes, imports)"
+    - "Command-line familiarity (terminal, package installation)"
+    - "Ubuntu 22.04 or Docker environment for ROS 2"
+  estimated_duration: "3-4 hours"
+
+  chapters:
+    - chapter:
+        id: "chapter-1-fundamentals"
+        number: 1
+        title: "ROS 2 Fundamentals"
+        description: "Learn the core concepts of ROS 2: nodes, topics, services, and lifecycle management."
+        file: "docs/module-1/chapter-1-fundamentals.md"
+        user_story: "US1 - Understanding ROS 2 Fundamentals (Priority P1)"
+        learning_outcomes:
+          - "Explain what a ROS 2 node is and its role in robot systems"
+          - "Create publisher and subscriber nodes for topic-based communication"
+          - "Differentiate between topics, services, and actions"
+          - "Apply lifecycle management to robot components"
+        estimated_reading_time: 60
+
+        sections:
+          - section:
+              id: "intro-ros2"
+              title: "What is ROS 2?"
+              content_blocks:
+                - type: "paragraph"
+                  content: "Introduction to ROS 2 as middleware for robotics"
+                - type: "diagram"
+                  diagram_id: "ros2-architecture"
+                  diagram_type: "mermaid"
+
+          - section:
+              id: "nodes-communication"
+              title: "Nodes and Communication Patterns"
+              content_blocks:
+                - type: "paragraph"
+                  content: "Explanation of ROS 2 nodes as independent processes"
+                - type: "diagram"
+                  diagram_id: "node-communication"
+                  diagram_type: "mermaid"
+                - type: "callout"
+                  callout_type: "info"
+                  content: "Nodes can be written in Python, C++, or other supported languages"
+
+          - section:
+              id: "topics-overview"
+              title: "Topics: Publish-Subscribe Communication"
+              content_blocks:
+                - type: "paragraph"
+                  content: "Asynchronous, many-to-many message passing via topics"
+                - type: "code"
+                  code_example_id: "simple_publisher"
+                  language: "python"
+                - type: "code"
+                  code_example_id: "simple_subscriber"
+                  language: "python"
+                - type: "callout"
+                  callout_type: "tip"
+                  content: "Use descriptive topic names like /camera/image_raw"
+
+          - section:
+              id: "services-overview"
+              title: "Services: Request-Response Communication"
+              content_blocks:
+                - type: "paragraph"
+                  content: "Synchronous, one-to-one communication for on-demand tasks"
+                - type: "table"
+                  table_id: "topics-vs-services"
+                  content: "Comparison of topics vs services use cases"
+
+          - section:
+              id: "lifecycle-management"
+              title: "Lifecycle Management"
+              content_blocks:
+                - type: "paragraph"
+                  content: "Managed node lifecycle states for robust initialization"
+                - type: "diagram"
+                  diagram_id: "lifecycle-states"
+                  diagram_type: "mermaid"
+                - type: "code"
+                  code_example_id: "lifecycle_node"
+                  language: "python"
+
+          - section:
+              id: "hands-on-exercise"
+              title: "Hands-On: Publisher-Subscriber System"
+              content_blocks:
+                - type: "paragraph"
+                  content: "Build a complete pub/sub system step by step"
+                - type: "code"
+                  code_example_id: "publisher_node_complete"
+                  language: "python"
+                - type: "code"
+                  code_example_id: "subscriber_node_complete"
+                  language: "python"
+                - type: "callout"
+                  callout_type: "success"
+                  content: "Expected output when running both nodes"
+
+        code_examples:
+          - "simple_publisher"
+          - "simple_subscriber"
+          - "lifecycle_node"
+          - "publisher_node_complete"
+          - "subscriber_node_complete"
+
+        external_links:
+          - link:
+              id: "ros2-humble-docs"
+              title: "ROS 2 Humble Documentation"
+              url: "https://docs.ros.org/en/humble/"
+              description: "Official ROS 2 Humble documentation with API reference"
+              type: "official_docs"
+          - link:
+              id: "lifecycle-tutorial"
+              title: "Managed Nodes (Lifecycle) Tutorial"
+              url: "https://docs.ros.org/en/humble/Tutorials/Intermediate/Lifecycle.html"
+              description: "Official tutorial on lifecycle management with detailed examples"
+              type: "tutorial"
+
+    - chapter:
+        id: "chapter-2-python-integration"
+        number: 2
+        title: "Python Agents & ROS 2 Integration"
+        description: "Bridge Python-based AI agents with ROS 2 controllers using rclpy."
+        file: "docs/module-1/chapter-2-python-integration.md"
+        user_story: "US2 - Integrating Python AI Agents with ROS 2 (Priority P2)"
+        learning_outcomes:
+          - "Initialize ROS 2 nodes within Python AI agent code"
+          - "Subscribe to sensor topics and process data in Python"
+          - "Publish control commands to robot actuators"
+          - "Implement complete sensor-to-actuator workflow"
+        estimated_reading_time: 50
+
+        sections:
+          - section:
+              id: "intro-rclpy"
+              title: "Introduction to rclpy"
+              content_blocks:
+                - type: "paragraph"
+                  content: "rclpy is Python client library for ROS 2"
+                - type: "code"
+                  code_example_id: "rclpy_basic_node"
+                  language: "python"
+
+          - section:
+              id: "ai-agent-architecture"
+              title: "AI Agent Architecture with ROS 2"
+              content_blocks:
+                - type: "paragraph"
+                  content: "How AI agents fit into ROS 2 ecosystem"
+                - type: "diagram"
+                  diagram_id: "ai-agent-ros2-flow"
+                  diagram_type: "mermaid"
+
+          - section:
+              id: "subscribing-sensor-data"
+              title: "Subscribing to Sensor Topics"
+              content_blocks:
+                - type: "paragraph"
+                  content: "Receive and process real-time sensor data"
+                - type: "code"
+                  code_example_id: "sensor_subscriber"
+                  language: "python"
+                - type: "callout"
+                  callout_type: "warning"
+                  content: "Handle different topic frequencies with callback queues"
+
+          - section:
+              id: "publishing-commands"
+              title: "Publishing Control Commands"
+              content_blocks:
+                - type: "paragraph"
+                  content: "Send commands from AI agent to robot controllers"
+                - type: "code"
+                  code_example_id: "controller_publisher"
+                  language: "python"
+
+          - section:
+              id: "complete-workflow"
+              title: "Complete AI Agent Workflow"
+              content_blocks:
+                - type: "paragraph"
+                  content: "End-to-end example: sensor input → decision → command output"
+                - type: "code"
+                  code_example_id: "ai_agent_node_complete"
+                  language: "python"
+                - type: "callout"
+                  callout_type: "success"
+                  content: "Expected behavior and console output"
+
+        code_examples:
+          - "rclpy_basic_node"
+          - "sensor_subscriber"
+          - "controller_publisher"
+          - "ai_agent_node_complete"
+
+        external_links:
+          - link:
+              id: "rclpy-api-docs"
+              title: "rclpy API Documentation"
+              url: "https://docs.ros2.org/humble/api/rclpy/"
+              description: "Complete API reference for rclpy Python library"
+              type: "reference"
+          - link:
+              id: "ros2-python-tutorial"
+              title: "Writing a Simple Publisher and Subscriber (Python)"
+              url: "https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Py-Publisher-And-Subscriber.html"
+              description: "Official beginner tutorial for Python ROS 2 programming"
+              type: "tutorial"
+
+    - chapter:
+        id: "chapter-3-urdf-modeling"
+        number: 3
+        title: "Humanoid Robot Description with URDF"
+        description: "Model humanoid robot physical structure using URDF for simulation and deployment."
+        file: "docs/module-1/chapter-3-urdf-modeling.md"
+        user_story: "US3 - Modeling Humanoid Robots with URDF (Priority P3)"
+        learning_outcomes:
+          - "Understand URDF XML structure (links, joints, sensors)"
+          - "Create URDF file for simple humanoid robot"
+          - "Load URDF into RViz for visualization"
+          - "Modify joint properties and see effects in simulator"
+        estimated_reading_time: 55
+
+        sections:
+          - section:
+              id: "intro-urdf"
+              title: "What is URDF?"
+              content_blocks:
+                - type: "paragraph"
+                  content: "Unified Robot Description Format (URDF) for robot modeling"
+                - type: "diagram"
+                  diagram_id: "urdf-structure-overview"
+                  diagram_type: "image"
+
+          - section:
+              id: "links-and-joints"
+              title: "Links and Joints"
+              content_blocks:
+                - type: "paragraph"
+                  content: "Links represent rigid bodies, joints define connections"
+                - type: "code"
+                  code_example_id: "simple_link_definition"
+                  language: "xml"
+                - type: "code"
+                  code_example_id: "revolute_joint_definition"
+                  language: "xml"
+                - type: "table"
+                  table_id: "joint-types-comparison"
+                  content: "Joint types: revolute, prismatic, fixed, continuous"
+
+          - section:
+              id: "humanoid-urdf-example"
+              title: "Humanoid Robot URDF Example"
+              content_blocks:
+                - type: "paragraph"
+                  content: "Complete URDF for simple humanoid (torso, arms, legs)"
+                - type: "code"
+                  code_example_id: "simple_humanoid_urdf"
+                  language: "xml"
+                - type: "diagram"
+                  diagram_id: "humanoid-kinematic-chain"
+                  diagram_type: "mermaid"
+
+          - section:
+              id: "adding-sensors"
+              title: "Adding Sensors to URDF"
+              content_blocks:
+                - type: "paragraph"
+                  content: "Define cameras, IMUs, LiDAR in URDF"
+                - type: "code"
+                  code_example_id: "urdf_with_sensors"
+                  language: "xml"
+
+          - section:
+              id: "visualizing-rviz"
+              title: "Visualizing in RViz"
+              content_blocks:
+                - type: "paragraph"
+                  content: "Load and visualize URDF in RViz"
+                - type: "code"
+                  code_example_id: "rviz_launch_file"
+                  language: "python"
+                - type: "diagram"
+                  diagram_id: "urdf-rviz-screenshot"
+                  diagram_type: "image"
+                - type: "callout"
+                  callout_type: "tip"
+                  content: "Use joint_state_publisher_gui to interactively move joints"
+
+          - section:
+              id: "hands-on-urdf-exercise"
+              title: "Hands-On: Create and Visualize Your URDF"
+              content_blocks:
+                - type: "paragraph"
+                  content: "Step-by-step exercise to create, load, and modify URDF"
+                - type: "callout"
+                  callout_type: "success"
+                  content: "What you should see in RViz with screenshots"
+
+        code_examples:
+          - "simple_link_definition"
+          - "revolute_joint_definition"
+          - "simple_humanoid_urdf"
+          - "urdf_with_sensors"
+          - "rviz_launch_file"
+
+        external_links:
+          - link:
+              id: "urdf-tutorials"
+              title: "URDF Tutorials"
+              url: "http://wiki.ros.org/urdf/Tutorials"
+              description: "Comprehensive URDF tutorials from basic to advanced"
+              type: "tutorial"
+          - link:
+              id: "urdf-xml-spec"
+              title: "URDF XML Specification"
+              url: "http://wiki.ros.org/urdf/XML"
+              description: "Complete XML tag reference for URDF files"
+              type: "reference"
+          - link:
+              id: "rviz-user-guide"
+              title: "RViz User Guide"
+              url: "https://docs.ros.org/en/humble/Tutorials/Intermediate/RViz/RViz-User-Guide/RViz-User-Guide.html"
+              description: "Official guide to using RViz for robot visualization"
+              type: "official_docs"
+
+# Global Configuration
+config:
+  docusaurus_version: "3.x"
+  ros2_distribution: "humble"
+  python_version: "3.10"
+  companion_repo: "https://github.com/[user]/physical-ai-book-examples"
+  content_license: "CC-BY-4.0"
+  code_license: "MIT"

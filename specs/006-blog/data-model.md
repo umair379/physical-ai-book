@@ -1,0 +1,362 @@
+# Phase 1 Data Model: Blog Page
+
+**Feature**: Blog Page | **Branch**: `006-blog` | **Date**: 2025-12-26
+
+## Entity Definitions
+
+This document defines the data models for blog posts, authors, tags, and the ModuleCTA component used in the Physical AI & Humanoid Robotics course blog.
+
+---
+
+## 1. BlogPost Entity
+
+**Description**: Represents a single blog post stored as a markdown file in the `blog/` directory with frontmatter metadata.
+
+### Frontmatter Schema
+
+```yaml
+---
+title: string                    # REQUIRED: Post headline (max 100 chars)
+date: YYYY-MM-DD                # REQUIRED: Publish date (ISO 8601 format)
+authors: string | string[]      # OPTIONAL: Author key(s) from authors.yml
+tags: string[]                  # OPTIONAL: Categorization tags
+description: string             # OPTIONAL: Custom excerpt (150-200 chars)
+image: string                   # OPTIONAL: Featured image path (relative to static/)
+slug: string                    # OPTIONAL: Custom URL slug (overrides date-based URL)
+---
+```
+
+### Field Specifications
+
+| Field | Type | Required | Default | Validation | Example |
+|-------|------|----------|---------|------------|---------|
+| `title` | `string` | ✅ Yes | - | Max 100 chars, non-empty | `"Module 1: ROS 2 Released"` |
+| `date` | `YYYY-MM-DD` | ✅ Yes | - | ISO 8601 date format | `2025-12-27` |
+| `authors` | `string \| string[]` | ❌ No | `['default']` | Keys must exist in authors.yml | `[default]` or `[alice, bob]` |
+| `tags` | `string[]` | ❌ No | `[]` | Non-empty strings, case-sensitive | `[ROS2, Tutorial]` |
+| `description` | `string` | ❌ No | First 150 chars | 150-200 chars recommended | `"Learn ROS 2 basics..."` |
+| `image` | `string` | ❌ No | `null` | Relative path from static/ | `/img/blog/ros2.jpg` |
+| `slug` | `string` | ❌ No | Derived from filename | URL-safe characters only | `getting-started` |
+
+### Content Body
+
+- **Format**: Markdown with MDX support
+- **Features Supported**:
+  - Headings (H1-H6)
+  - Lists (ordered, unordered)
+  - Code blocks with syntax highlighting
+  - Images
+  - Links
+  - Tables
+  - Blockquotes
+  - React components (via MDX imports)
+
+### File Naming Convention
+
+```
+blog/YYYY-MM-DD-post-title.md
+```
+
+**Examples**:
+- `blog/2025-12-26-welcome.md`
+- `blog/2025-12-27-module-1-announcement.md`
+- `blog/2025-12-28-gazebo-tutorial.md`
+
+### URL Structure
+
+- **Default**: `/blog/YYYY/MM/DD/post-title` (derived from filename)
+- **Custom**: `/blog/<slug>` (if `slug` frontmatter specified)
+
+### Example BlogPost
+
+**File**: `blog/2025-12-27-module-1-announcement.md`
+
+```markdown
+---
+title: "Module 1: ROS 2 Fundamentals Released"
+date: 2025-12-27
+authors: [default]
+tags: [ROS2, Announcement]
+description: "Announcing the release of Module 1 covering ROS 2 core concepts, nodes, and communication patterns."
+image: /img/blog/module-1-release.jpg
+---
+
+We're excited to announce the release of **Module 1: ROS 2 Fundamentals**!
+
+## What You'll Learn
+
+- ROS 2 core concepts and architecture
+- Creating nodes and topics
+- Understanding pub/sub communication
+
+## Getting Started
+
+Visit the [Module 1 page](/docs/module-1-ros2/intro) to begin learning.
+
+import ModuleCTA from '@site/src/components/ModuleCTA';
+
+<ModuleCTA
+  moduleName="ROS2"
+  moduleNumber={1}
+  moduleTitle="ROS 2 Fundamentals"
+  moduleUrl="/docs/module-1-ros2/intro"
+/>
+```
+
+---
+
+## 2. Author Entity
+
+**Description**: Represents a blog post author stored in the centralized `blog/authors.yml` file.
+
+### Author Schema
+
+```yaml
+author_key:
+  name: string          # REQUIRED: Full name
+  title: string         # OPTIONAL: Role or title
+  url: string           # OPTIONAL: Personal website or GitHub
+  image_url: string     # OPTIONAL: Avatar image path
+```
+
+### Field Specifications
+
+| Field | Type | Required | Default | Validation | Example |
+|-------|------|----------|---------|------------|---------|
+| `name` | `string` | ✅ Yes | - | Non-empty string | `"Physical AI Course Team"` |
+| `title` | `string` | ❌ No | `null` | - | `"ROS 2 Expert"` |
+| `url` | `string` | ❌ No | `null` | Valid URL or relative path | `https://github.com/alice` |
+| `image_url` | `string` | ❌ No | Default avatar | Relative path from static/ | `/img/authors/alice.jpg` |
+
+### Example Authors File
+
+**File**: `blog/authors.yml`
+
+```yaml
+default:
+  name: Physical AI Course Team
+  title: Instructors
+  url: https://github.com/physical-ai-course
+  image_url: /img/authors/team.jpg
+
+alice:
+  name: Alice Johnson
+  title: ROS 2 Expert
+  url: https://github.com/alice
+  image_url: /img/authors/alice.jpg
+
+bob:
+  name: Bob Smith
+  title: Gazebo Specialist
+  url: https://github.com/bob
+  image_url: /img/authors/bob.jpg
+```
+
+### Author Rendering
+
+- **Display**: Author name, avatar, and title appear at top of blog post
+- **Link**: Author name links to `url` if provided
+- **Multi-Author**: Multiple authors displayed as "By Alice Johnson & Bob Smith"
+
+---
+
+## 3. Tag Entity
+
+**Description**: Represents a blog post category/tag auto-generated by Docusaurus from post frontmatter.
+
+### Tag Schema (Auto-Generated)
+
+```typescript
+interface Tag {
+  label: string;        // Display name (e.g., "ROS2")
+  permalink: string;    // Tag page URL (e.g., "/blog/tags/ros-2")
+  count: number;        // Number of posts with this tag
+}
+```
+
+### Field Specifications
+
+| Field | Type | Generated By | Example |
+|-------|------|--------------|---------|
+| `label` | `string` | Post frontmatter `tags` field | `"ROS2"` |
+| `permalink` | `string` | Docusaurus (auto-converts to URL-safe slug) | `/blog/tags/ros-2` |
+| `count` | `number` | Docusaurus (counts posts with tag) | `5` |
+
+### Tag Naming Convention
+
+**Use Display Names in Frontmatter**:
+- `ROS2` → `/blog/tags/ros-2`
+- `Gazebo` → `/blog/tags/gazebo`
+- `Isaac` → `/blog/tags/isaac`
+- `VLA` → `/blog/tags/vla`
+- `Tutorial` → `/blog/tags/tutorial`
+- `Announcement` → `/blog/tags/announcement`
+
+### Tag Page Behavior
+
+- **URL**: `/blog/tags/<tag-slug>`
+- **Content**: List of all posts with that tag
+- **Display**: Tag name + post count (e.g., "3 posts tagged with ROS2")
+- **Navigation**: Back to all posts link
+
+### Example Tag Usage
+
+```yaml
+---
+tags: [ROS2, Tutorial]        # Single post with 2 tags
+---
+```
+
+This post will appear on:
+- `/blog/tags/ros-2`
+- `/blog/tags/tutorial`
+
+---
+
+## 4. ModuleCTA Component
+
+**Description**: React component for displaying call-to-action links from blog posts to course modules.
+
+### Component Props
+
+```typescript
+interface ModuleCTAProps {
+  moduleName: 'ROS2' | 'Gazebo' | 'Isaac' | 'VLA';  // Module identifier
+  moduleNumber: 1 | 2 | 3 | 4;                      // Module number
+  moduleTitle: string;                              // Full module name
+  moduleUrl: string;                                // Link to module page
+}
+```
+
+### Prop Specifications
+
+| Prop | Type | Required | Validation | Example |
+|------|------|----------|------------|---------|
+| `moduleName` | `'ROS2' \| 'Gazebo' \| 'Isaac' \| 'VLA'` | ✅ Yes | One of 4 module names | `"ROS2"` |
+| `moduleNumber` | `1 \| 2 \| 3 \| 4` | ✅ Yes | Integer 1-4 | `1` |
+| `moduleTitle` | `string` | ✅ Yes | Non-empty string | `"ROS 2 Fundamentals"` |
+| `moduleUrl` | `string` | ✅ Yes | Valid relative URL | `/docs/module-1-ros2/intro` |
+
+### Module Mapping (Internal to Component)
+
+```typescript
+const MODULE_MAP = {
+  ROS2: {
+    number: 1,
+    title: 'ROS 2 Fundamentals',
+    url: '/docs/module-1-ros2/intro',
+    icon: '🤖',
+  },
+  Gazebo: {
+    number: 2,
+    title: 'Gazebo Simulation',
+    url: '/docs/module-2-gazebo/intro',
+    icon: '🏗️',
+  },
+  Isaac: {
+    number: 3,
+    title: 'Isaac Sim & Brain',
+    url: '/docs/module-3-isaac/intro',
+    icon: '🧠',
+  },
+  VLA: {
+    number: 4,
+    title: 'Vision-Language-Action Models',
+    url: '/docs/module-4-vla/intro',
+    icon: '👁️',
+  },
+};
+```
+
+### Component Usage in Blog Posts
+
+```markdown
+import ModuleCTA from '@site/src/components/ModuleCTA';
+
+<ModuleCTA
+  moduleName="ROS2"
+  moduleNumber={1}
+  moduleTitle="ROS 2 Fundamentals"
+  moduleUrl="/docs/module-1-ros2/intro"
+/>
+```
+
+### Component Rendering
+
+**Visual Design**:
+- Card with purple border (`2px solid var(--ifm-color-primary)`)
+- Black gradient background
+- Module icon + number
+- Title: "Continue Learning: Module 1 - ROS 2 Fundamentals"
+- Description: Brief module overview
+- CTA Button: "Go to Module" (purple background)
+
+**Responsive**:
+- **Mobile (375px)**: Full width, stacked layout
+- **Tablet/Desktop (768px+)**: Max-width 600px, centered
+
+---
+
+## Entity Relationships
+
+### BlogPost → Author
+- **Relationship**: Many-to-Many (blog post can have multiple authors)
+- **Storage**: `authors` field in BlogPost frontmatter references keys in `authors.yml`
+- **Example**: `authors: [alice, bob]`
+
+### BlogPost → Tag
+- **Relationship**: Many-to-Many (blog post can have multiple tags, tag can have multiple posts)
+- **Storage**: `tags` field in BlogPost frontmatter
+- **Auto-Generation**: Docusaurus extracts unique tags and creates tag pages
+
+### BlogPost → ModuleCTA
+- **Relationship**: One-to-Many (blog post can have multiple ModuleCTA components)
+- **Integration**: MDX import in blog post content
+- **Display**: Rendered at bottom of blog post
+
+---
+
+## Data Validation Rules
+
+### BlogPost Validation
+1. **Required Fields**: `title` and `date` must be present
+2. **Date Format**: Must be ISO 8601 (YYYY-MM-DD)
+3. **Author Keys**: Must exist in `authors.yml`
+4. **Tag Format**: Array of non-empty strings
+5. **Image Path**: Must start with `/` (relative to static/)
+
+### Author Validation
+1. **Required Fields**: `name` must be present
+2. **URL Format**: Must be valid URL or relative path
+3. **Image Path**: Must start with `/` (relative to static/)
+
+### Tag Validation
+1. **Case-Sensitive**: Tags must use exact capitalization
+2. **Unique Labels**: Docusaurus auto-deduplicates tags
+3. **URL-Safe Slugs**: Docusaurus auto-converts to lowercase with hyphens
+
+### ModuleCTA Validation
+1. **Module Name**: Must be one of: `ROS2`, `Gazebo`, `Isaac`, `VLA`
+2. **Module Number**: Must match module name (ROS2=1, Gazebo=2, Isaac=3, VLA=4)
+3. **Module URL**: Must be valid relative URL starting with `/docs/`
+
+---
+
+## Summary
+
+**4 Primary Entities**:
+1. **BlogPost** - Markdown file with frontmatter metadata
+2. **Author** - YAML entry in centralized authors file
+3. **Tag** - Auto-generated by Docusaurus from post tags
+4. **ModuleCTA** - React component for module links
+
+**Key Relationships**:
+- BlogPost → Author (many-to-many via author keys)
+- BlogPost → Tag (many-to-many via tags array)
+- BlogPost → ModuleCTA (one-to-many via MDX imports)
+
+**Storage Locations**:
+- BlogPost: `blog/YYYY-MM-DD-post-title.md`
+- Author: `blog/authors.yml`
+- Tag: Auto-generated (no manual storage)
+- ModuleCTA: `src/components/ModuleCTA/`

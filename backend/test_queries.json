@@ -1,0 +1,69 @@
+{
+  "common": {
+    "description": "General queries expected to return highly relevant results (>0.8 similarity)",
+    "queries": [
+      {
+        "query": "What is physical AI?",
+        "expected_min_score": 0.5,
+        "expected_url_pattern": "intro"
+      },
+      {
+        "query": "How do I set up ROS 2?",
+        "expected_min_score": 0.5,
+        "expected_url_pattern": "module-1"
+      },
+      {
+        "query": "Explain computer vision basics",
+        "expected_min_score": 0.5,
+        "expected_url_pattern": "module-2"
+      }
+    ]
+  },
+  "edge_cases": {
+    "description": "Complex queries with multiple concepts (>0.7 similarity)",
+    "queries": [
+      {
+        "query": "Compare transformers and RNNs for sequence modeling in robotics",
+        "expected_min_score": 0.4
+      }
+    ]
+  },
+  "adversarial": {
+    "description": "Off-topic or gibberish queries (should score <0.5)",
+    "queries": [
+      {
+        "query": "How to cook pasta?",
+        "expected_max_score": 0.5,
+        "reason": "Off-topic (cooking, not robotics)"
+      },
+      {
+        "query": "asdfghjkl random noise query",
+        "expected_max_score": 0.5,
+        "reason": "Gibberish input"
+      }
+    ]
+  },
+  "topic_coverage": {
+    "description": "Verify all major documentation sections are indexed (>0.75 similarity)",
+    "queries": [
+      {
+        "query": "ROS 2 basics",
+        "expected_min_score": 0.5,
+        "expected_url_pattern": "module-1",
+        "module": "Module 1"
+      },
+      {
+        "query": "Computer vision techniques",
+        "expected_min_score": 0.5,
+        "expected_url_pattern": "module-2",
+        "module": "Module 2"
+      },
+      {
+        "query": "Neural network fundamentals",
+        "expected_min_score": 0.5,
+        "expected_url_pattern": "module-3",
+        "module": "Module 3"
+      }
+    ]
+  }
+}

@@ -1,0 +1,74 @@
+import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';
+
+// This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
+
+/**
+ * Creating a sidebar enables you to:
+ - create an ordered group of docs
+ - render a sidebar for each doc of that group
+ - provide next/previous navigation
+
+ The sidebars can be generated from the filesystem, or explicitly defined here.
+
+ Create as many sidebars as you want.
+ */
+const sidebars: SidebarsConfig = {
+  // Physical AI Book sidebar with explicit Module 1 structure
+  tutorialSidebar: [
+    'intro',
+    {
+      type: 'category',
+      label: 'Module 1: The Robotic Nervous System (ROS 2)',
+      link: {
+        type: 'doc',
+        id: 'module-1/index',
+      },
+      items: [
+        'module-1/chapter-1-fundamentals',
+        'module-1/chapter-2-python-integration',
+        'module-1/chapter-3-urdf-modeling',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Module 2: The Digital Twin (Gazebo & Unity)',
+      link: {
+        type: 'doc',
+        id: 'module-2/index',
+      },
+      items: [
+        'module-2/chapter-1-gazebo-physics',
+        'module-2/chapter-2-unity-environments',
+        'module-2/chapter-3-sensor-simulation',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Module 3: The AI-Robot Brain (NVIDIA Isaac)',
+      link: {
+        type: 'doc',
+        id: 'module-3/index',
+      },
+      items: [
+        'module-3/chapter-1-isaac-sim',
+        'module-3/chapter-2-isaac-ros',
+        'module-3/chapter-3-nav2',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Module 4: Vision-Language-Action (VLA)',
+      link: {
+        type: 'doc',
+        id: 'module-4/index',
+      },
+      items: [
+        'module-4/chapter-1-voice-to-action',
+        'module-4/chapter-2-llm-planning',
+        'module-4/chapter-3-capstone',
+      ],
+    },
+  ],
+};
+
+export default sidebars;
